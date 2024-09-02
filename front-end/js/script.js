@@ -1,43 +1,45 @@
+const inputMsg = document.querySelector(".chat-input");
+const sendButton = document.querySelector(".send-button");
+const chatMessages = document.querySelector(".chat-messages");
+const currentUserName = document.getElementById("current-user-name");
+const currentUserImage = document.getElementById("current-user-image");
 
-const inputMsg = document.querySelector(".chatinput");
-const sendButton = document.querySelector(".fa-paper-plane"); // check if this is the correct name
-const chatBody = document.querySelector(".chatsection-middle");
-// variable to store the users message
-let storeChat; 
-
-// function to send a chat to the chat body
+// function to send a message
 function sendMessage() {
-    storeChat = inputMsg.value.trim(); 
-    if (!storeChat) return;
+    const message = inputMsg.value.trim();
+    if (!message) return;
     inputMsg.value = "";
-    chatBody.appendChild(messageEl(storeChat, "user")); 
+    chatMessages.appendChild(createMessageElement(message, "user"));
 }
 
-// displaying the sent message
-const messageEl = (message, className) => {
-    const chatElmt = document.createElement("div");
-    chatElmt.classList.add("chat", `${className}`); 
-    let chatContent = `<p>${message}</p>`;
-    chatElmt.innerHTML = chatContent; // to set inner html of code
-    return chatElmt;
+// create a message element
+const createMessageElement = (message, className) => {
+    const messageElmt = document.createElement("div");
+    messageElmt.classList.add("chat-message", className);
+    messageElmt.innerHTML = `<p>${message}</p>`;
+    return messageElmt;
 };
 
-// this isnt functioning as expected *fix this
+// sends a message on button click
 sendButton.addEventListener("click", sendMessage);
 
-inputMsg.addEventListener("input", (e) => {
-    e.preventDefault();
-    e.target.addEventListener("keydown", (keyboard) => {
-      if (keyboard.key === "Enter") {
+// Send message on Enter key press
+inputMsg.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
         sendMessage();
-      }
-    });
+    }
 });
 
-// Update the current user and handle clicks on sidebar
-document.querySelectorAll('.username').forEach(item => {
+// add function for file transfer
+
+// change the current user when a user item is clicked
+document.querySelectorAll('.user-item').forEach(item => {
     item.addEventListener('click', function() {
         const username = this.querySelector('p').textContent;
-        document.getElementById('current-user').textContent = username;
+        const userImage = this.querySelector('img').src;
+        
+        currentUserName.textContent = username;
+        currentUserImage.src = userImage;
     });
 });
