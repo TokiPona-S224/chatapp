@@ -1,194 +1,146 @@
 body {
-    /* width: 100%; */
     min-height: 99vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff398;
+    margin: 0;
 }
 
-.main-container {
-    /* max-width: 1000px; */
+.container {
     width: 90%;
-    /* min-height: 90vh; */
     height: 100%;
     background: #ffffff;
     border-radius: 25px;
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    /* overflow: hidden; */
     border: 5px solid #ffed96;
     box-shadow: 0px 0px 25px #a49a4e;
 }
 
-.navigation-bar {
+.header {
     width: 100%;
-    height: fit-content;
+    padding: 8px 4%;
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 4%;
 }
 
-.nav-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.nav-title img {
+.logo img {
     width: 100px;
     height: auto;
 }
 
-.body-container {
+.main-content {
     width: 95%;
     height: 76.5vh;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0 4% 20px 4%;
     gap: 20px;
-    overflow: hidden;
+    padding: 0 4% 20px;
 }
 
-/* Sidebar on the left */
-.body-sidebar {
+.sidebar {
     width: 250px;
     height: 100%;
-    overflow-x: hidden;
     overflow-y: scroll;
 }
-.sidebar {
-    width: 100%;
-    /* height: fit-content; */
-    margin-top: 10px; 
-    margin-left: -10px;
+
+.user-list {
+    margin-top: 10px;
 }
-.username {
-    width: 100%;
+
+.user-item {
     display: flex;
     align-items: center;
     gap: 10px;
     margin: 10px 0;
     background: #ffffff;
-    padding: 1px 20px;
-    cursor: pointer; 
+    padding: 10px;
+    cursor: pointer;
 }
-.username p {
-    font-size: 25px;
-}
-.username img {
+
+.user-item img {
     width: 35px;
     border: 3px solid #000000;
     border-radius: 50%;
 }
-.loginlogout {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: row;
-    width: 90%;
-    background-color: #eaeaea;
-    border-radius: 25px;
-    border: #eaeaea;
-    padding: 0px 20px;
-}
-.loginlogout p {
+
+.user-item p {
     font-size: 25px;
 }
-/* flex-grow: 1;
-display: flex;
-justify-content: flex-start;
-flex-direction: row;
-background-color: #eaeaea;
-border-radius: 25px;
-border: #eaeaea;
-padding: 20px 10px;
-margin-bottom: 2%; */
-/* Chat section on the right!!!!!!!!!!!!!!! */
-.body-chatsection {
-    flex-grow: 1;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-}
-.chatsection-header {
-    width: 100%;
-    height: fit-content;
-    padding: 1% 4% 5px 4%;
-    border-bottom: #e8e8e8;
-}
-.current-user {
-    font-size: 30px;
-}
-/* Middle sectionnnnnnnnnnnnnnnn */
-.chatsection-middle {
-    width: 100%;
-    height: 72%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    padding: 0px 4% 35px 4%;
-}
 
-.chatsection-form {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
+.login-logout {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    gap: 20px;
-}
-
-.chatinput {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
     background-color: #eaeaea;
     border-radius: 25px;
-    border: #eaeaea;
-    padding: 20px 10px;
-    margin-bottom: 2%;
+    border: 1px solid #eaeaea;
+    padding: 10px 20px;
+    margin-top: 20px;
 }
 
-.chatinput input{
-    font-size: 18px;
-    color: #000000
+.login-logout button {
+    font-size: 25px;
 }
 
-.send-here {
-    position: absolute;
-    border: none;
-    background-color: none;
-    right: 30px;
+.chat-section {
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
 }
 
-.send-here:hover{
-    color: #4ab0fd;
+.chat-header {
+    padding: 1% 4% 5px 4%;
+    border-bottom: 1px solid #e8e8e8;
 }
 
-/* This is styling for when a user receives a chat message */
-/* .message {
-    width: 60%;
-    height: fit-content;
-    background: #cacaca;
+.current-user {
     display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 15px;
-    border-radius: 15px;
-    gap: 15px;
-    margin-bottom: 15px;
-} */
-
-.message {
-    margin-left: 40%;
-    background: #2e82e2;
+    align-items: center;
+    font-size: 30px;
 }
 
+#current-user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.chat-messages {
+    height: 72%;
+    overflow-y: scroll;
+    padding: 0 4% 35px;
+}
+
+.chat-footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 4%;
+    width: 100%;
+}
+
+.chat-input {
+    flex-grow: 1;
+    background-color: #eaeaea;
+    border-radius: 25px;
+    border: 1px solid #eaeaea;
+    padding: 20px;
+    font-size: 18px;
+}
+
+.send-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.send-button:hover {
+    color: #3380bc;
+}
