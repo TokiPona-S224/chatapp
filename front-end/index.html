@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toki Chat App</title>
+    <link rel="stylesheet" href="/front-end/css/styles.css">
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Top bar with name and logo -->
+        <div class="navigation-bar">
+            <div class="nav-title">
+                <img src="/front-end/assets/logo.PNG" alt="Toki">
+            </div>
+
+        </div>
+        <!-- Bottom half of the page with everything -->
+        <div class="body-container">
+            <!-- sidebar with other users -->
+            <div class="body-sidebar">
+                <div class="sidebar">
+                    <!-- Listing the users in sidebars below (*update this to clickable usernames)--> 
+                    <div class="username" id="usr1">
+                        <img src="/front-end/assets/user-default.PNG"></img>
+                        <p>User 1</p> 
+                    </div>
+                    <div class="username" id="usr2">
+                        <img src="/front-end/assets/user-default.PNG"></img>
+                        <p>User 2</p>
+                    </div>
+                    <div class="username" id="usr3">
+                        <img src="/front-end/assets/user-default.PNG"></img>
+                        <p>User 3</p>
+                    </div>
+                    <div class="username" id="usr4">
+                        <img src="/front-end/assets/user-default.PNG"></img>
+                        <p>User 4</p>
+                    </div>
+                    <div class="loginlogout">
+                        <button type="button" name="Loginlogout">Login</button>
+                    </div>
+                </div>
+            </div>
+            <!-- main chatting section -->
+            <div class="body-chatsection">
+                <div class="chatsection-header">
+                    <div class="current-user">
+                        <!-- *update this to dynamically change based on sidebar  -->
+                        <p id="current-user">User 1</p> 
+                    </div>
+                </div>
+                <div class="chatsection-middle">
+                    <div class="message"></div>
+                    <!-- <div class="messagemine"></div> -->
+                </div>
+                <div class="chatsection-form">
+                        <textarea name="message" class="chatinput" id="" cols="10" rows="1" placeholder="Send a message..."></textarea>
+                        <div class="send-here">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/front-end/js/script.js"></script>
+</body>
+</html>
