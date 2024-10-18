@@ -2,7 +2,7 @@
 
 README for Toki: Web Chat with Ethical Backdoors
 
-This application is a decentralized chat system that allows private and group messaging and file transfers. It includes intentional backdoors for ethical hacking exercises.
+This application is a decentralised chat system that allows private and group messaging and file transfers. It includes intentional backdoors for ethical hacking exercises.
 
 Compilation and Running Instructions:
 -------------------------------------
