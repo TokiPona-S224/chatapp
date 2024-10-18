@@ -1,0 +1,154 @@
+<!-- 
+Toki : Chat App
+Group 4 
+Akrita Singh - a1915043 
+Jian Zhang - a1851092
+Reham Mansour - a1744126
+Samrawit Ghebremedhin -a1810859 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toki: Chat App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff; /* White background for the chat box */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: center; /* Center text within the container */
+        }
+        h2 {
+            color: #ffcc00; /* Yellow color for the title */
+            margin: 0; /* Remove default margin */
+        }
+        #messages {
+            border: 1px solid #ccc;
+            height: 300px;
+            overflow-y: scroll;
+            padding: 5px;
+            margin-bottom: 10px;
+            background-color: #e6f7ff; /* Light blue for messages area */
+        }
+        #messageInput {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #sendButton {
+            width: 18%;
+            padding: 10px;
+            background-color: #ffcc00; /* Yellow background for button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #sendButton:hover {
+            background-color: #e6b800; /* Darker yellow on hover */
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px; /* Center the logo */
+            width: 100px; /* Adjust logo size */
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            padding: 10px;
+            background-color: #ffcc00; /* Yellow background for button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #e6b800; /* Darker yellow on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="logo"> <!-- Placeholder for logo -->
+        <h2>Toki: Chat App</h2> <!-- Added app name -->
+        
+        <!-- Login Form -->
+        <div id="login" class="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button id="loginButton">Login</button>
+        </div>
+        
+        <!-- Chat Interface -->
+        <div id="chat" style="display:none;">
+            <div id="messages"></div>
+            <input type="text" id="messageInput" placeholder="Type a message..." required>
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8765');
+
+        ws.onopen = () => {
+            console.log("Connected to the server");
+        };
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === "chat" || data.type === "public_chat") {
+                const messageElement = document.createElement('div');
+                messageElement.textContent = data.message;
+                document.getElementById('messages').appendChild(messageElement);
+            } else if (data.type === "success") {
+                document.getElementById('login').style.display = 'none'; // Hide login form
+                document.getElementById('chat').style.display = 'block'; // Show chat interface
+            } else if (data.type === "error") {
+                alert(data.message); // Display error message
+            }
+        };
+
+        document.getElementById('loginButton').onclick = () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username && password) {
+                ws.send(JSON.stringify({ type: "hello", username: username, password: password }));
+            }
+        };
+
+        document.getElementById('sendButton').onclick = () => {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value;
+            if (message) {
+                ws.send(JSON.stringify({ type: "public_chat", message: message }));
+                messageInput.value = ''; // Clear the input after sending
+            }
+        };
+    </script>
+</body>
+</html>
